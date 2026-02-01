@@ -3064,6 +3064,33 @@
             });
 
 
+
+            document.addEventListener('keydown', (e) => {
+                if (e.metaKey && e.key === 'Backspace') {
+                    const priceTab = document.getElementById('price');
+                    if (!priceTab || !priceTab.classList.contains('active')) return;
+
+                    const activeEl = document.activeElement;
+                    if (!activeEl) return;
+
+                    const row = activeEl.closest('.price-row');
+                    if (!row) return;
+
+                    const container = document.getElementById('lineItems');
+                    if (!container) return;
+
+                    e.preventDefault();
+
+                    // Only remove if more than 1 row exists
+                    if (container.children.length > 0) {
+                        row.remove();
+                        calculatePriceMatch();
+                        toggleAddLineItemButton();
+                    }
+                }
+            });
+
+
             
             document.querySelectorAll(
                 '#baseQty,#basePrice,#amendQty,#amendPrice,#amendMonths,#amendDecimals,' +
