@@ -1360,16 +1360,19 @@
                         Overage %
                     </label>
 
-                    <select id="overagePercent">
-                        <option value="1.2">120%</option>
-                        <option value="1">100%</option>
-                    </select>
+                    <input type="number"
+                        id="overagePercent"
+                        value="120"
+                        min="0"
+                        step="1"
+                        style="width:100px;" 
+                    />
 
                     
                     <div id="financeNote"
                          class="warn"
                          style="display:none;">
-                        ⚠ Finance approval required for 100% overage.
+                        ⚠ Finance approval required for below 120% overage.
                     </div>
                 </div>
 
@@ -2218,7 +2221,9 @@
             const volume = Number(document.getElementById('overageVolume').value || 0);
             const price = Number(document.getElementById('overagePrice').value || 0);
             const decimals = Number(document.getElementById('overageDecimals').value || 6);
-            const percent = Number(document.getElementById('overagePercent').value || 1.2);
+            // const percent = Number(document.getElementById('overagePercent').value || 1.2);
+            const percentInput = Number(document.getElementById('overagePercent').value || 120);
+            const percent = percentInput / 100;
             const period = document.querySelector('input[name="ovgPeriod"]:checked').value;
             const ovgMonthsEl = document.getElementById('ovgMonths');
                 ovgMonthsEl.style.display =
@@ -2264,7 +2269,7 @@
             document.getElementById('ovgEquiv').innerHTML = ovgHTML;    
 
             document.getElementById('financeNote').style.display =
-                document.getElementById('overagePercent').value === '1' ? 'block' : 'none';
+                document.getElementById('overagePercent').value < '120' ? 'block' : 'none';
 
             
             let monthlyBasePrice = 0;
@@ -2874,7 +2879,7 @@
             monthsEl.style.display = 'none';
 
                         document.getElementById('overageDecimals').value = '6';
-            document.getElementById('overagePercent').value = '1.2';
+            document.getElementById('overagePercent').value = '120';
             document.getElementById('isDP').checked = false;
 
                         document.getElementById('financeNote').style.display = 'none';
