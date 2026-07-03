@@ -3499,8 +3499,8 @@
                 // When both sides share the same multi-year term, use TCV diff
                 // so the absolute reflects the full contract period, not one year
                 const discountAbs =
-                    (listPeriod === 'other' && discPeriod === 'other' &&
-                     listMonths === discMonths && listMonths > 0)
+                    (listPeriod === discPeriod &&
+                     (listPeriod !== 'other' || (listMonths === discMonths && listMonths > 0)))
                         ? listPrice - discountedPrice
                         : listACV - discACV;
 
