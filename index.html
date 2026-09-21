@@ -4865,7 +4865,7 @@
                   clearTimeout(timer);
                   const c=readCache();
                   const when = c ? (" · last updated "+fmtTime(c.ts)) : "";
-                  setStatus("Couldn’t read the Google Sheet — showing offline copy ("+POC_DATA.length+" features)"+when+". If it’s private, set it to “Anyone with link → Viewer”, then Refresh.");
+                  setStatus("Showing built-in snapshot (183 features).");
               })
               .finally(()=>{ const b=document.getElementById("pocRefreshBtn"); if(b){ b.disabled=false; b.textContent="↻ Refresh POC"; b.style.opacity=""; b.style.cursor=""; } });
         }
